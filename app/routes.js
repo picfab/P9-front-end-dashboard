@@ -8,7 +8,8 @@ const {
     getUserActivityById,
     getUserAverageSession,
     getUserPerformance,
-    getKeyDataById
+    getKeyDataById,
+    getTodayScoreById
 } = require('./models')
 
 const {
@@ -27,6 +28,13 @@ router.get('/user/:id', (req, res) => {
 router.get('/user/:id/key-data', (req, res) => {
     const userId = idx(req, _ => _.params.id)
     const userData = getKeyDataById(Number(userId))
+
+    return handleNoUserData(res, userData)
+})
+
+router.get('/user/:id/today-score', (req, res) => {
+    const userId = idx(req, _ => _.params.id)
+    const userData = getTodayScoreById(Number(userId))
 
     return handleNoUserData(res, userData)
 })

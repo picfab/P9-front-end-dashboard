@@ -21,7 +21,25 @@ const getKeyDataById = id => {
     .filter(user => user.id === id)
     .shift()
 
-    return user.keyData
+    return {
+        userId: user.id,
+        data:user.keyData
+    }
+}
+
+/**
+ * @description Retrieve the main user today score
+ * @param {number} id
+ */
+const getTodayScoreById = id => {
+    const user = USER_MAIN_DATA
+    .filter(user => user.id === id)
+    .shift()
+
+    return {
+        userId: user.id,
+        data:user.todayScore
+    }
 }
 
 
@@ -53,5 +71,6 @@ module.exports = {
     getUserActivityById,
     getUserAverageSession,
     getUserPerformance,
-    getKeyDataById
+    getKeyDataById,
+    getTodayScoreById
 }
